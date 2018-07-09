@@ -6,7 +6,7 @@ import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.CommandLine;
 
-public class WordCount {
+public class Main {
     public static void main(String args[]) throws Exception{
 
         String file = "";
