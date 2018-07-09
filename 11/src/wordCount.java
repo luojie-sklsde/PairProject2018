@@ -29,7 +29,7 @@ public class wordCount {
     public static void countWord(File file, PrintStream printStream)throws FileNotFoundException{
         Scanner input = new Scanner(file);
         HashMap map = new HashMap();
-        int n=1;
+
         int line=0;
         while (input.hasNextLine()){
             String charline = input.nextLine();
@@ -37,14 +37,18 @@ public class wordCount {
             String argex1="[a-zA-Z]{4,}[a-zA-Z0-9]*";
             String[] a = charline.split(argex);
             //System.out.print(a);
+
             for (int i =0;i<a.length;i++){
                 boolean id_word =  a[i].matches(argex1);
+                int n=1;
                 if (id_word){
-                   if (map.containsKey(a[i])){
-                       map.put(a[i],n+1);
-                   }else {
-                       map.put(a[i],1);
-                   }
+                    String key = a[i].toLowerCase();
+                    if (map.containsKey(key)){
+                        n=Integer.parseInt(map.get(key).toString())+1;
+                        map.put(key,n);
+                    }else {
+                        map.put(key,1);
+                    }
                 }
             }
             if (!charline.trim().isEmpty()){
@@ -81,6 +85,7 @@ public class wordCount {
         Integer count1 =0;
         for (Map.Entry<String, Integer> entry : list) {
             if (is_out!=entry.getValue()){
+                System.out.println("<"+entry.getKey()+">:"  + entry.getValue());
                 printStream.println("<"+entry.getKey()+">:"  + entry.getValue());
                 is_out=entry.getValue();
                 count1++;

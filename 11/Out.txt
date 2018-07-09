@@ -1,4 +1,12 @@
-characters:33
-line:2
-<chinese>:<2>
-<asdads>:<1>
+characters:4232749
+line:74645
+<that>:12912
+<shall>:9838
+<unto>:8997
+<lord>:7964
+<they>:7376
+<them>:6430
+<with>:6012
+<thou>:5474
+<which>:4413
+<said>:3999
