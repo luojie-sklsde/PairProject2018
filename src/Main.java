@@ -2,6 +2,7 @@ import java.io.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class Main {
@@ -22,6 +23,19 @@ public class Main {
 
     }
 
+
+    public int countLines(String filename) throws FileNotFoundException {
+        int count=0;
+        File file = new File(filename);
+        FileInputStream fis = new FileInputStream(file);
+        Scanner scanner = new Scanner(fis);
+        while(scanner.hasNextLine()){
+            scanner.nextLine();
+            count++;
+        }
+        return count;
+
+    }
     public String readToString(String fileName) {
         String encoding = "UTF-8";
         File file = new File(fileName);
@@ -91,9 +105,20 @@ public class Main {
         //统计字符数量，还需完善忽略中文功能
         int char_amount = m.countChar(file_string);
 
-        //获取词频字典
+        //获取词频字典，还需完善识别单词功能
         Map words_map = m.getWordsMap(file_string);
-        System.out.println(words_map.size());
+
+        //获取单词数量
+        int words_amount = words_map.size();
+        System.out.println(words_amount);
+
+        System.out.println(m.stringToAscii(file_string));
+        try {
+            System.out.println(m.countLines(args[0]));
+        }
+        catch (Exception e){
+            System.out.println("can't find file");
+        }
     }
 
 }
