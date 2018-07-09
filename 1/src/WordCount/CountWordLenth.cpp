@@ -39,12 +39,28 @@ int wordGroupCount(const string &fileName, int m, map<string, int> &wordGroupMap
 	tmp << reader.rdbuf();
 	string testStr = tmp.str();
 
-	map<string, int> wordCounter;
+	bool flag = false;
 	string word = "";
+	int continueCount = 0;
+	vector<string> movingWords;
 	for (int i = 0; i<testStr.length(); ++i)
 	{
 		char c = testStr[i];
-		if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || ((c >= 97 && c <= 122)))//judge whether c is a number or character
+		if (flag)
+		{
+			if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || ((c >= 97 && c <= 122)))
+			{
+				continue;
+			}
+			else
+			{
+				flag = false;
+				word = "";
+				continue;
+			}
+		}
+
+		if ((c >= 65 && c <= 90) || ((c >= 97 && c <= 122)))//judge whether c is a number or character
 		{
 			word += c;
 		}
@@ -52,12 +68,33 @@ int wordGroupCount(const string &fileName, int m, map<string, int> &wordGroupMap
 		{
 			if (word.length() >= 4)//is a word
 			{
-				transform(word.begin(), word.end(), word.begin(), (int(*)(int))tolower);
-				words.push_back(word);
+				if (c >= 48 && c <= 57)
+				{
+					word += c;
+				}
+				else
+				{
+					transform(word.begin(), word.end(), word.begin(), (int(*)(int))tolower);
+					words.push_back(word);
+					word = "";
+				}
 			}
-			word = "";
+			else
+			{
+				if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || ((c >= 97 && c <= 122)))
+				{
+					flag = true;
+				}
+				else
+				{
+					word = "";
+				}
+			}
 		}
+
 	}
+
+
 	for (int i = 0; i<words.size() - m + 1; ++i)
 	{
 		string wordgroup_temp;
@@ -74,22 +111,14 @@ int wordGroupCount(const string &fileName, int m, map<string, int> &wordGroupMap
 		}
 
 		if (wordGroupMap.find(wordgroup_temp) == wordGroupMap.end())
-
 		{
-
 			wordGroupMap[wordgroup_temp] = 1;
-
 		}
-
 		else
-
 		{
-
 			wordGroupMap[wordgroup_temp] += 1;
-
 		}
 	}
 	reader.close();
 	return 0;
-
 }

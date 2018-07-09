@@ -1,0 +1,5 @@
+﻿  unittest1.cpp
+d:\0_git\pairproject2018\1\wordcount\unittest\unittest1.cpp(67): warning C4018: “<”: 有符号/无符号不匹配
+    正在创建库 D:\0_Git\PairProject2018\1\wordCount\Debug\UnitTest.lib 和对象 D:\0_Git\PairProject2018\1\wordCount\Debug\UnitTest.exp
+  UnitTest.vcxproj -> D:\0_Git\PairProject2018\1\wordCount\Debug\UnitTest.dll
+  UnitTest.vcxproj -> D:\0_Git\PairProject2018\1\wordCount\Debug\UnitTest.pdb (Partial PDB)

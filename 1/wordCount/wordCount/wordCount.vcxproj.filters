@@ -41,10 +41,10 @@
     <ClCompile Include="WordCount.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CountWordLenth.cpp">
+    <ClCompile Include="Utils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="CountWordLenth.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

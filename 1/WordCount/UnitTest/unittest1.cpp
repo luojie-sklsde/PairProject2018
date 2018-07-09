@@ -50,10 +50,6 @@ namespace UnitTest
 					string tmp = line.substr(11, line.length() - 1);
 					asciiCount = atoi(tmp.c_str());
 				}
-				else
-				{
-					continue;
-				}
 			}
 
 			Assert::AreEqual(asciiCount, 95);
@@ -90,7 +86,7 @@ namespace UnitTest
 			{
 				if (line[0] == 'w')
 				{
-					string tmp = line.substr(11, line.length() - 1);
+					string tmp = line.substr(6, line.length() - 1);
 					asciiCount = atoi(tmp.c_str());
 				}
 			}
@@ -147,19 +143,21 @@ namespace UnitTest
 			fstream out("..\\WordCount\\result.txt", ios::in);
 
 			string line;
-			bool clex = false;
-			int i = 4;
+			int asciiCount = 0;
 			while (getline(out, line))
 			{
-				if (--i) continue;
-				string word = line.substr(0, 7);
-				string tmp = line.substr(9, line.length() - 1);
-				int number = atoi(tmp.c_str());
-				if (word == "yuqin666" && number == 190)
-					clex = true;
+				if (line[0] == 'w')
+				{
+					string tmp = line.substr(6, line.length() - 1);
+					asciiCount = atoi(tmp.c_str());
+				}
+				else
+				{
+					continue;
+				}
 			}
 
-			Assert::IsTrue(clex);
+			Assert::AreEqual(asciiCount, 4);
 		}
 
 	};

@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 {
 
 
-	string fileName = ".\\testTxt\\noASCII_in.txt";
+	string fileName = ".\\testTxt\\asciiCount_in.txt";
 	int m = 0;
 	int n = 10;
 	string output = "result.txt";

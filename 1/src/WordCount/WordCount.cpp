@@ -19,11 +19,10 @@ int main(int argc, char* argv[])
 {
 
 
-	string fileName = "input.txt";
+	string fileName = ".\\testTxt\\asciiCount_in.txt";
 	int m = 0;
 	int n = 10;
 	string output = "result.txt";
-
 	vector<string> str;
 	for (int i = 0; i<argc; ++i)
 	{
