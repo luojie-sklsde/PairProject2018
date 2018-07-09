@@ -1,0 +1,5 @@
+characters:203
+words:21
+lines:14
+love: 14
+baby: 7
