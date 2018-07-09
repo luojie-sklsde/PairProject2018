@@ -48,8 +48,8 @@ public class wordCount {
         PrintStream printStream = new PrintStream(fileOutputStream);
         System.setOut(printStream);
         System.out.println("characters:"+countChar);
-        System.out.println("lines:"+counLine);
         System.out.println("words:"+countWord);
+        System.out.println("lines:"+counLine);
         SortMap(wordsCount);    //按值进行排序
     }
 
