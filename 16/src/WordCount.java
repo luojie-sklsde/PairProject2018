@@ -1,15 +1,45 @@
 import java.io.*;
 import java.util.*;
 
-public class WordCount {
-    public static void main(String args[]) {
-        if (args.length < 1) return;
-        String file = args[0];
-        WordCount wc = new WordCount();
-        String content = wc.readToString(file);
-        try {
-            PrintWriter writer = new PrintWriter("c:\\project\\result.txt", "UTF-8");
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.CommandLine;
 
+public class WordCount {
+    public static void main(String args[]) throws Exception{
+
+        String file = "";
+        // Create a Parser
+        CommandLineParser parser = new BasicParser( );
+        Options options = new Options( );
+        options.addOption("i", "input", true, "Input file name");
+        options.addOption("o", "output", true, "Output file name" );
+        options.addOption("m", "phrase", false, "Phrase length");
+        // Parse the program arguments
+        CommandLine commandLine = parser.parse(options, args);
+
+        if( commandLine.hasOption('h') ) {
+                System.out.println( "Help Message");
+                System.exit(0);
+        }
+
+        if (! commandLine.hasOption('i')) {
+            System.out.println( "Need the input file");
+            System.exit(0);
+        }
+        String inputFile = commandLine.getOptionValue('i');
+        PrintStream writer;
+        if (commandLine.hasOption('o')) {
+            String outputFile = commandLine.getOptionValue('o');
+            writer = new PrintStream(outputFile, "UTF-8");
+        } else {
+            writer = System.out;
+        }
+
+        WordCount wc = new WordCount();
+        String content = wc.readToString(inputFile);
+        try {
             writer.printf("chracters: %d\n", content.length());
             List<String> wordList = wc.wordSplit(content);
             writer.printf("words: %s\n", wordList.size());
