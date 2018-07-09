@@ -5,15 +5,16 @@ import java.util.*;
 public class wordCount {
     public static void main(String[] args) throws IOException {
         //读入TXT文件
-        Scanner input=new Scanner(System.in);
+//        Scanner input=new Scanner(System.in);
+        File file = new File(args[0]);
+        Scanner input = new Scanner(file);
         String path = input.next();
         List<String> wordArray = new ArrayList<String>();
         int countChar=0;
         int countWord=0;
         int counLine=0;
-        InputStreamReader reader = new InputStreamReader(new FileInputStream(path)); // 建立一个输入流对象reader
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(args[0])); // 建立一个输入流对象reader
         BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
-
         List<String> lists = new ArrayList<String>();  //存储过滤后单词的列表
         String readLine = null;
         while((readLine = br.readLine()) != null){
@@ -39,11 +40,18 @@ public class wordCount {
             countWord++;
         }
 
+
+        //写入Txt文件
+        File f = new File("output.txt");
+        f.createNewFile();
+        FileOutputStream fileOutputStream = new FileOutputStream(f);
+        PrintStream printStream = new PrintStream(fileOutputStream);
+        System.setOut(printStream);
         System.out.println("characters:"+countChar);
-        System.out.println("words:"+countWord);
         System.out.println("lines:"+counLine);
+        System.out.println("words:"+countWord);
         SortMap(wordsCount);    //按值进行排序
-}
+    }
 
         //按value的大小进行排序
         public static void SortMap(Map<String,Integer> oldmap){
@@ -66,8 +74,6 @@ public class wordCount {
 
     }
 
-        //写入Txt文件
-//         File writename = new File("output.txt");
 
 }
 

@@ -1,0 +1,5 @@
+characters:29
+lines:2
+words:3
+love: 2
+baby: 1
