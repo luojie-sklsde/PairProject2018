@@ -1,8 +1,8 @@
 import java.io.*;
-/*
+
 import java.util.HashMap;
 import java.util.Map;
-*/
+
 
 public class Main {
     public String stringToAscii(String value) {
@@ -48,7 +48,7 @@ public class Main {
     public int countChar(String file_string){
         return file_string.length();
     }
-/*
+
     public Map getWordsMap(String text){
         //找出所有的单词
         String[] array = {".", " ", "?", "!"};
@@ -72,7 +72,7 @@ public class Main {
             }
         }
         //输出到控制台
-
+/*
         System.out.println("各个单词出现的频率为：");
         Iterator<String> iter = map.keySet().iterator();
         while(iter.hasNext()){
@@ -80,19 +80,20 @@ public class Main {
             Integer num = map.get(key);
             System.out.println(key + "\n\t\t" + num + "次\n-------------------");
         }
+*/
         return map;
     }
-*/
+
     public static void main(String args[]){
         Main m = new Main();
 
         String file_string = m.readToString(args[0]);
         //统计字符数量，还需完善忽略中文功能
         int char_amount = m.countChar(file_string);
-/*
-        //统计单词数量
+
+        //获取词频字典
         Map words_map = m.getWordsMap(file_string);
         System.out.println(words_map.size());
     }
-    */
+
 }
