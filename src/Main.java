@@ -3,25 +3,18 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Main {
-    public String stringToAscii(String value) {
-        //将字符串转换为Ascii码字符串
-        StringBuffer sbu = new StringBuffer();
-        char[] chars = value.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if(i != chars.length - 1)
-            {
-                sbu.append((int)chars[i]).append(",");
-            }
-            else {
-                sbu.append((int)chars[i]);
-            }
-        }
-        return sbu.toString();
+    private static String REGEX_CHINESE = "[\u4e00-\u9fa5]";// 中文正则
 
+    public String neglectChinese(String str) {
+        // 去除中文
+        Pattern pat = Pattern.compile(REGEX_CHINESE);
+        Matcher mat = pat.matcher(str);
+        return mat.replaceAll("");
     }
 
 
@@ -62,7 +55,8 @@ public class Main {
     }
 
     public int countChar(String file_string){
-        return file_string.length();
+        String str = neglectChinese(file_string);
+        return str.length();
     }
 
     public Map getWordsMap(String text){
@@ -123,6 +117,8 @@ public class Main {
         String file_string = m.readToString(args[0]);
         //统计字符数量，还需完善忽略中文功能
         int char_amount = m.countChar(file_string);
+        System.out.print("字符数：");
+        System.out.println(char_amount);
 
         //获取词频字典
         Map words_map = m.getWordsMap(file_string);
