@@ -6,7 +6,7 @@ import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.CommandLine;
 
-public class WordCount {
+public class Main {
     public static void main(String args[]) throws Exception{
 
         String file = "";
@@ -37,7 +37,7 @@ public class WordCount {
             writer = System.out;
         }
 
-        WordCount wc = new WordCount();
+        Main wc = new Main();
         String content = wc.readToString(inputFile);
         try {
             writer.printf("chracters: %d\n", content.length());
@@ -158,11 +158,11 @@ public class WordCount {
         Collections.sort(sortedList, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1,
                                Map.Entry<String, Integer> o2) {
-//				System.out.println(o1.getKey()+"   ===  "+o2.getKey());
+//              System.out.println(o1.getKey()+"   ===  "+o2.getKey());
                 if (o2.getValue().toString().equals(o1.getValue().toString()))
                     return o1.getKey().toString().compareTo(o2.getKey().toString());
                 else
-                return (o2.getValue()).toString().compareTo(o1.getValue().toString());
+                return Integer.parseInt(o2.getValue().toString()) - Integer.parseInt(o1.getValue().toString());
             }
         });
 
