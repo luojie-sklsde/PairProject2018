@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 
 public class Main {
@@ -25,6 +26,7 @@ public class Main {
 
 
     public int countLines(String filename) throws FileNotFoundException {
+        //获取文件行数
         int count=0;
         File file = new File(filename);
         FileInputStream fis = new FileInputStream(file);
@@ -65,18 +67,35 @@ public class Main {
 
     public Map getWordsMap(String text){
         //找出所有的单词
-        String[] array = {".", " ", "?", "!"};
+        String[] array = {".", " ", "?", "!", "\r\n"};
         for (int i = 0; i < array.length; i++) {
             text = text.replace(array[i],",");
         }
         String[] textArray = text.split(",");
         //遍历 记录
         Map<String, Integer> map = new HashMap<String, Integer>();
+        int upper_limit;
+
         for (int i = 0; i < textArray.length; i++) {
             String key = textArray[i];
             //转为小写
             String key_l = key.toLowerCase();
-            if(!"".equals(key_l)){
+
+            boolean is_a_word = true;
+            if(key_l.length() > 4){
+                upper_limit = 4;
+            }else{
+                upper_limit = key_l.length();
+            }
+
+            for(int j=0; j <upper_limit; j++){
+                char c = key_l.charAt(j);
+                if (!Character.isLetter(c)){
+                    is_a_word = false;
+                }
+            }
+
+            if(is_a_word && !"".equals(key_l)){
                 Integer num = map.get(key_l);
                 if(num == null || num == 0){
                     map.put(key_l, 1);
@@ -105,15 +124,17 @@ public class Main {
         //统计字符数量，还需完善忽略中文功能
         int char_amount = m.countChar(file_string);
 
-        //获取词频字典，还需完善识别单词功能
+        //获取词频字典
         Map words_map = m.getWordsMap(file_string);
 
         //获取单词数量
         int words_amount = words_map.size();
+        System.out.print("单词数量:");
         System.out.println(words_amount);
 
-        System.out.println(m.stringToAscii(file_string));
+        //System.out.println(m.stringToAscii(file_string));
         try {
+            System.out.print("行数：");
             System.out.println(m.countLines(args[0]));
         }
         catch (Exception e){
