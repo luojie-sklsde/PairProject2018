@@ -24,12 +24,27 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CountWordLenth.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="wordCount.cpp">
+    <ClCompile Include="WordCount.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CountWordLenth.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
