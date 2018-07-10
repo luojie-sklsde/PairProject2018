@@ -29,6 +29,7 @@ public class Main {
         System.out.println("File " + ifileName + " chars: " +  mwc.getCharacters());
         System.out.println("File " + ifileName + " words: " +  mwc.getWords());
         System.out.println("File " + ifileName + " Lines: " +  mwc.getLines());
+        System.out.println("The words with the highest frequency is "+ (String)mwc.getWord() +" appears " + mwc.getCount()[mwc.getMaxi()]+" times");
 
 
 

@@ -9,8 +9,13 @@ public class WordCount {
     private int characters;
     private ArrayList<String> wordArr = new ArrayList<>();
     private String  word = "";
+
+    public int[] getCount() {
+        return count;
+    }
+
     private int[] count;
-    private  int max;
+    private  int maxi;
 
     public int getLines() {
         return lines;
@@ -24,6 +29,11 @@ public class WordCount {
         return characters;
     }
 
+    public int getMaxi() {        return maxi;    }
+
+    public String getWord() {
+        return word;
+    }
 
     public  void setter(File ifile, int m, File ofile) {
         int c = 0;
@@ -55,17 +65,21 @@ public class WordCount {
                     String aEach1 = (String) wordArr.get(j);
                     if(aEach.equals(aEach1)){
                         count[i]++;
-                   System.out.println("cout["+i+"]"+count[i]);
+
+                        System.out.println("cout["+i+"]"+count[i]);
                     }
                 }
             }
-            max=0;
+            int max=0;
             for(int i=0; i < wordArr.size(); i++){
 
-                if(count[i]>max)
-                    max=i;
+                if(count[i] > max){
+                    max = count[i];
+                    maxi=i;}
             }
-            System.out.println("The words with the highest frequency is "+(String) wordArr.get(max)+" appears " +count[max]+" times");
+            word = wordArr.get(maxi);
+
+            //System.out.println("The words with the highest frequency is "+(String) wordArr.get(maxi)+" appears " +count[maxi]+" times");
 
         } catch (FileNotFoundException e) {
             System.err.println(ifile + " is not found");
